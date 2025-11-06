@@ -17,12 +17,12 @@ import com.example.navigasiku.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TampilData(
-    OnBackBtnClick: () -> Unit
+    onBackBtnClick: () -> Unit
 ) {
     val items = listOf(
         Pair(stringResource(id = R.string.nama_lengkap), "Contoh Nama"),
         Pair(stringResource(id = R.string.jenis_kelamin), "Lainnya"),
-        Pair("Alamat", "Yogyakarta") // ✅ stringResource salah → diperbaiki minimal
+        Pair("Alamat", "Yogyakarta") // Kalau mau stringResource, bisa tambahkan di strings.xml
     )
 
     Scaffold(
@@ -54,16 +54,16 @@ fun TampilData(
                 )
             ) {
 
-                items.forEach { item ->        // ✅ "items" diganti "item"
+                items.forEach { item ->
                     Column {
                         Text(
-                            text = item.first.uppercase(),   // ✅ text - item → text = item
+                            text = item.first.uppercase(),
                             fontSize = 16.sp
                         )
                         Text(
                             text = item.second,
                             fontWeight = FontWeight.Bold,
-                            fontFamily = FontFamily.Cursive, // ✅ syntax diperbaiki
+                            fontFamily = FontFamily.Cursive,
                             fontSize = 22.sp
                         )
                     }
@@ -78,7 +78,7 @@ fun TampilData(
 
                 Button(
                     modifier = Modifier.fillMaxWidth(),
-                    onClick = OnBackBtnClick    // ✅ nama function diperbaiki
+                    onClick = onBackBtnClick
                 ) {
                     Text(text = stringResource(id = R.string.back))
                 }
