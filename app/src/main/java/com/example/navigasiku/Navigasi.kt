@@ -10,23 +10,23 @@ import com.example.navigasiku.ui.theme.NavigasiKuTheme
 
 @Composable
 fun DataApp(
-    navController : NavHostController = rememberNavController(),
+    navController: NavHostController = rememberNavController(),
     modifier: Modifier
-){
+) {
     Scaffold { isiRuang ->
         val navHost = NavHost(
             navController = navController,
             startDestination = Navigasi.Formulirku.name,
 
             modifier = Modifier.padding(paddingValues = isiRuang) {
-                composable(route = Navigasi.Formulirku.name){
+                composable(route = Navigasi.Formulirku.name) {
                     FormIsian(
                         OnSubmitClick = {
                             navController.navigate(rouute = Navigasi.Detail.name)
                         }
                     )
                 }
-                composable (route = Navigasi.Detail.name){
+                composable(route = Navigasi.Detail.name) {
                     TampilData(
                         onBackBtnClick = {
                             cancelAndBackToFormulirku(navController)
@@ -36,6 +36,14 @@ fun DataApp(
 
             }
         )
-
     }
+}
+
+private fun cancelAndBackToFormulirku(
+    navController: NavHostController
+) {
+    navController.popBackStack(
+        route = Navigasi.Formulirku.name,
+        inclusive = false
+    )
 }
