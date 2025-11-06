@@ -5,37 +5,46 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.navigasiku.ui.theme.NavigasiKuTheme
+import com.example.navigasiku.view.FormIsian
+import com.example.navigasiku.view.TampilData
+
+enum class Navigasi {
+    Formulirku,
+    Detail
+}
 
 @Composable
 fun DataApp(
     navController: NavHostController = rememberNavController(),
-    modifier: Modifier
+    modifier: Modifier = Modifier
 ) {
     Scaffold { isiRuang ->
-        val navHost = NavHost(
+
+        NavHost(
             navController = navController,
             startDestination = Navigasi.Formulirku.name,
+            modifier = modifier.padding(isiRuang)
+        ) {
 
-            modifier = Modifier.padding(paddingValues = isiRuang) {
-                composable(route = Navigasi.Formulirku.name) {
-                    FormIsian(
-                        OnSubmitClick = {
-                            navController.navigate(rouute = Navigasi.Detail.name)
-                        }
-                    )
-                }
-                composable(route = Navigasi.Detail.name) {
-                    TampilData(
-                        onBackBtnClick = {
-                            cancelAndBackToFormulirku(navController)
-                        }
-                    )
-                }
-
+            composable(route = Navigasi.Formulirku.name) {
+                FormIsian(
+                    // pilihanJK = JenisK.map { id -> konteks.resources.getString(id) }
+                    OnSubmitBtnClick = {
+                        navController.navigate(Navigasi.Detail.name)
+                    }
+                )
             }
-        )
+
+            composable(route = Navigasi.Detail.name) {
+                TampilData(
+                    onBackBtnClick = {
+                        cancelAndBackToFormulirku(navController)
+                )
+            }
+        }
     }
 }
 
