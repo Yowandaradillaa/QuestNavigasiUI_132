@@ -42,6 +42,7 @@ fun DataApp(
                 TampilData(
                     onBackBtnClick = {
                         cancelAndBackToFormulirku(navController)
+                    }
                 )
             }
         }
