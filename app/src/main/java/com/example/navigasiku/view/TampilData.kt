@@ -2,6 +2,7 @@ package com.example.navigasiku.view
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
+import androidx.compose.material3.DividerDefaults.Thickness
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -53,8 +54,7 @@ fun FormIsian(
                 modifier = Modifier
                     .padding(20.dp)
                     .width(250.dp),
-                thickness =  Thickness,
-                color = Color.Red
+                thickness =  Thickness, color = Color.Red
             )
 
             Row {
@@ -84,6 +84,12 @@ fun FormIsian(
                 onValueChange = {},
             )
             Spacer(modifier = Modifier.height(height = 30.dp))
+            Button (
+                modifier = Modifier.fillMaxWidth(fraction = 1f),
+                onClick = OnSubmitBtnClick
+            ){
+                Text(text = stringResource(id = R.string.submit))
+            }
         }
     }
 }
