@@ -20,8 +20,20 @@ fun DataApp(
 
             modifier = Modifier.padding(paddingValues = isiRuang) {
                 composable(route = Navigasi.Formulirku.name){
-
+                    FormIsian(
+                        OnSubmitClick = {
+                            navController.navigate(rouute = Navigasi.Detail.name)
+                        }
+                    )
                 }
+                composable (route = Navigasi.Detail.name){
+                    TampilData(
+                        onBackBtnClick = {
+                            cancelAndBackToFormulirku(navController)
+                        }
+                    )
+                }
+
             }
         )
 
